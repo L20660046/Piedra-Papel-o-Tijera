@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Piedra, Papel o Tijera</title>
+    <style>
+        body {
+            background-image: url('ruta-de-tu-imagen.jpg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            text-shadow: 2px 2px 4px #000;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Piedra, Papel o Tijera</h1>
+        <button onclick="jugar('piedra')">Piedra</button>
+        <button onclick="jugar('papel')">Papel</button>
+        <button onclick="jugar('tijera')">Tijera</button>
+        <p id="resultado"></p>
+    </div>
+
+    <script>
+        function jugar(eleccionUsuario) {
+            const opciones = ['piedra', 'papel', 'tijera'];
+            const eleccionComputadora = opciones[Math.floor(Math.random() * 3)];
+            let resultado = '';
+
+            if (eleccionUsuario === eleccionComputadora) {
+                resultado = '¡Empate!';
+            } else if (
+                (eleccionUsuario === 'piedra' && eleccionComputadora === 'tijera') ||
+                (eleccionUsuario === 'papel' && eleccionComputadora === 'piedra') ||
+                (eleccionUsuario === 'tijera' && eleccionComputadora === 'papel')
+            ) {
+                resultado = '¡Ganaste!';
+            } else {
+                resultado = 'Perdiste...';
+            }
+
+            document.getElementById('resultado').textContent = `Tú elegiste ${eleccionUsuario}, la computadora eligió ${eleccionComputadora}. ${resultado}`;
+        }
+    </script>
+</body>
+</html>
+
+
